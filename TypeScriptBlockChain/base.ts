@@ -45,7 +45,7 @@ if (typeof result === "string") {
   result = "result type is string";
 } else if (typeof result === "number") {
   // 해당 조건문을 통과하면 그때부터 result 의 타입은 number 가 된다. (타입추론)
-  let value = result + 1;
+  result + 1;
 }
 
 //----------------------------- typeof never -----------------------------------------
