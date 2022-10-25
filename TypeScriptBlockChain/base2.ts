@@ -45,6 +45,8 @@ type FinallyPrint = {
   <T>(arr: T[]): T;
 };
 
+type CollaborationPlaceHolder = <T, M>(a: T[], b: M) => T;
+
 const superPrint: SuperPrint = (number) => {
   number.forEach((i) => console.log(i));
 };
@@ -68,3 +70,10 @@ const a = finallyPrint([1, 2, 3, 4]);
 const b = finallyPrint(["hello", "world"]);
 const c = finallyPrint([true, false, true, true]);
 const d = finallyPrint([1, "hello", true]);
+
+const collaborationPlaceHolder: CollaborationPlaceHolder = (a, b) => a[0];
+
+collaborationPlaceHolder([1, 2, 3], "");
+collaborationPlaceHolder(["hello"], "world");
+collaborationPlaceHolder([true], false);
+collaborationPlaceHolder([], [1, 2, 3, "hello", true]);
