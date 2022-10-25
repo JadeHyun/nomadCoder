@@ -28,3 +28,43 @@ const calculator: Minus = (a, b, c?: number) => {
 // 인자의 경우 두개만 필요할 경우엔 선택적프로퍼티(?:)를 사용하여 타입을 지정해 주는것이 좋다.
 
 //---------------------------------- (function)  polymorphism ----------------------------------
+// call signature 를 사용하는데, 여러 타입을 사용할 경우 각 타입을 하나하나 지정해주는 번거로움이 생긴다.
+// 이를 간소화 하기 위해 다형성(polymorphism)을 사용한다.
+
+type SuperPrint = {
+  (backNumber: number[]): void;
+  (backNumber: boolean[]): void;
+  (backNumber: string[]): void;
+};
+
+type LegendPrint = {
+  <PlaceHolder>(nickNames: PlaceHolder[]): void;
+};
+
+type FinallyPrint = {
+  <T>(arr: T[]): T;
+};
+
+const superPrint: SuperPrint = (number) => {
+  number.forEach((i) => console.log(i));
+};
+
+superPrint([1, 2, 3, 4]);
+superPrint([true, false, false, true]);
+superPrint(["true", "2", "3"]);
+
+const legendPrint: LegendPrint = (arr) => {
+  arr.forEach((i) => console.log(i));
+};
+
+legendPrint([1, 2, 3, 4]);
+legendPrint([true, false, true]);
+legendPrint(["h", "e", "l", "l", "o"]);
+legendPrint([1, 2, 3, true, false, "hello"]);
+
+const finallyPrint: FinallyPrint = (arr) => arr[0];
+
+const a = finallyPrint([1, 2, 3, 4]);
+const b = finallyPrint(["hello", "world"]);
+const c = finallyPrint([true, false, true, true]);
+const d = finallyPrint([1, "hello", true]);
